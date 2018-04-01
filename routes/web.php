@@ -27,3 +27,12 @@ Route::get('/student-projects', function () {
 Route::get('/topics', function () {
     return view('student.topics');
 });
+Route::group(['prefix'=> 'admin','namespace' => 'admin'], function()
+{
+	Route::get('/', function(){
+		return view ('admin.master');
+	})->name ('dashboard');
+	Route::resource('user','UserController');
+
+	Route::get('/user/delete/{id}', 'UserController@destroy');
+});

@@ -11,5 +11,6 @@ class Admin extends Model
         'email',
         'phone',
     ];
-
+    //lien ket csdl
+public function 
 }
