@@ -29,4 +29,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function Admin()
+    {
+        return $this->belongto(Admin::class);//1 tai khoan user se thuoc 1 admin
+    }
+    public function Student()
+    {
+        return $this->belongto(Student::class);
+    }
+    public function Lecturer()
+    {
+        return $this->belongto(Lecturer::class);
+    }
+    public function setPasswordAttribute($value)//set :quy dinh du lieu duoc luu trong bang
+    {  
+        $this->atrributes['password']= bcrypt($value);//ma hoa password
+    } 
+    public function getAvatarAttribute($value)
+    {
+        return asset(config('custom.defaultPath') . $value); //noi chuoi va tra lai duong dan
+    }
 }
