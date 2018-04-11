@@ -227,7 +227,7 @@
                         </div>
                     </div>
                 </div>
-				@include('sites.footer')
+				@include('layouts.footer')
             </div>
 			<div class="EGB"></div>
         </div>
