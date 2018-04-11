@@ -10,4 +10,12 @@ class StudentRepositoryEloquent extends AbstractRepositoryEloquent implements St
 	{
 		return new Student; 
 	}
+	public function search ($keyword, $with = [], $select= '*')
+	{
+		return $this->model()
+		->with($with)
+		->select($select)
+		->where('name', 'like', '%'.$keyword. '%')
+		->paginate(10);
+	}
 }

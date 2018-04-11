@@ -10,6 +10,7 @@ use App\Constracts\CourseRepository;
 use App\Constracts\BranchRepository;
 use App\Http\Requests\StudentRequest;
 
+
 class UserController extends Controller
 {
     protected $class, $student, $course, $branch;
@@ -125,5 +126,13 @@ class UserController extends Controller
             }
             return response(['status'=>trans('messages.failed')]);
         }
+    }
+    public function search(Request $request){
+        if ($request->ajax()) {
+            $students = $this->student->search($request->keyword);
+            $view = view('admin.user.list_user', compact('students'))->render();
+             return response(['students' => $view]);
+        }
+
     }
 }

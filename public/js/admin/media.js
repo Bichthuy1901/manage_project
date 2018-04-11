@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    $(document).on('click', '.delUser', function () {
+    console.log(1);
+    //Delete media
+    $(document).on('click', '.delMedia', function () {
         var id = $(this).data('id');
         var selector = $(this);
         swal({
@@ -12,7 +14,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: '/admin/user/delete/' + id,
+                    url: '/admin/media/delete/' + id,
                     type: 'GET',
                     success: function (res) {
                         swal(
@@ -34,17 +36,23 @@ $(document).ready(function() {
             }
         });    
     });
-    //search by username
-    $(document).on('keyup','#search', function(){
-        var keyword = $(this).val();
-        $.ajax({
-            url: '/admin/search-user',
-            method: 'GET',
-            data: {keyword: keyword},
-            success: function(response){
-                $('.table-responsive').html(response.students);
-                console.log(response);
-            }
-        })
-    })
+
+    //Event review file media
+    $(document).on('change', '#file-media', function() {
+        var file = event.target.files[0] || event.dataTransfer.files[0];
+        console.log(1);
+
+        createFile(file);
+    });
+
+    //function reciew file media
+    function createFile(file) {
+        var reader = new FileReader();
+        var review_file_path = '';
+        reader.onload = (e) => {
+            review_file_path = e.target.result;
+            $('.review-file-media').attr('src', review_file_path);
+        };
+        reader.readAsDataURL(file);
+    }
 });
