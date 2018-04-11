@@ -15,20 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-
 Route::get('/student-project-request', function () {
     return view('student.request_project');
-
-Route::get('/student-projectsect-requesr', function () {
-    return view('student.student_project_request');
->>>>>>> CRUD student
 });
-
-Route::get('/student-projects', function () {
-    return view('student.student_project');
-});
-
 Route::get('/topics', function () {
     return view('student.topics');
 });

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
 use App\Constracts\MediaRepository;
-
+use App\Helper\Helper;
 class MediaController extends Controller
 {
     protected $media;
@@ -43,13 +43,15 @@ class MediaController extends Controller
      */
     public function store(MediaRequest $request)
    {
+
         $data = [
-            'description' => $request->description,
+            'name' => $request->name,
             'status' => $request->status,
-            'type' => $request->type,
+            
         ];
         
         $data['path'] = Helper::upload($request->path, 'media');
+       
         if ($this->media->create($data)) {
             return redirect()->route('media.create')->with('error', trans('The media has been successfully created!'));
         } else {

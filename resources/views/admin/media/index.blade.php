@@ -32,7 +32,7 @@
       <tr>
           <th class="text-center">{{ $m->id }}</th>
           <th><img class="img-responsive media-file" src="{{ $m->path }}"></th>
-          <th>{{ $m->description }}</th>
+          <th>{{ $m->name }}</th>
           <th class="text-center">
             @if ($m->status == config('custom.media.status.show'))
                 <button class="btn btn-primary">{{ trans('message.config.show') }}</button>
@@ -40,15 +40,7 @@
             <button class="btn btn-warning">{{ trans('message.config.hide') }}</button>
             @endif
           </th>
-          <th class="text-center">
-            @if (config('custom.media.type') != null)
-                @foreach(config('custom.media.type') as $key => $type)
-                    @if($m->type == $type)
-                    <button class="btn btn-primary">{{ $key }}</button>
-                    @endif
-                @endforeach
-            @endif
-          </th>
+          
           <th>
             <a href = "{{ route('media.edit', ['id' => $m->id]) }}">
               <i class="fas fa-edit"></i>
