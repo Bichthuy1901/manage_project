@@ -5,7 +5,7 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('trainer.index') }}">{{ trans('message.title.manage_trainers') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('trainer.index') }}">{{ trans('message.title.manage_trainer') }}</a></li>
     <li class="breadcrumb-item active">{{ trans('message.title.create_trainer') }}</li>
 </ol>
 <div class="card card-register mx-auto mt-5">
@@ -53,7 +53,7 @@
                         <strong>{{ $errors->first('birthday') }}</strong>
                 </span>
             @endif
-        </div>
+       
 
         <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.address') }}</label>
@@ -61,6 +61,16 @@
             @if ($errors->has('address'))
                 <span class="help-block">
                         <strong>{{ $errors->first('address') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.orientation') }}</label>
+            <input class="form-control" type="text" name="orientation" value="{{ old('orientation') }}" placeholder="Enter orientation" required>
+            @if ($errors->has('orientation'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('orientation') }}</strong>
                 </span>
             @endif
         </div>

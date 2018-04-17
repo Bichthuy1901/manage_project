@@ -45,6 +45,7 @@ return [
         'cinema_schedule' => 'Lịch chiếu',
         'schedule_time' => 'Thời gian',
              'manage_student' => 'Quản lý sinh viên',
+             'mange_trainer'=>'Quản lý giảng viên'
     ],
     'action' => [
         'edit' => 'Sửa',

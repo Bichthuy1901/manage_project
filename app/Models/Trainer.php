@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Trainers extends Model
+class Trainer extends Model
 {
     protected $fillable = [
         'name',
@@ -13,10 +13,11 @@ class Trainers extends Model
         'address',
         'email',
         'phone',
-        'branch_id',
         'note',
+        'orientation',
         'status',
     ];
+    protected $table = "lecturers";
     public function TrainerStudent()
     {
     return $this->hasMany(TrainerStudent::class);

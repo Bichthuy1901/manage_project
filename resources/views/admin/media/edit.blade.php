@@ -40,11 +40,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">{{ trans('message.column.description') }}</label>
-            <input class="form-control" type="text" name="description" value="{{ $media->description }}" placeholder="Description" required>
-            @if ($errors->has('description'))
+            <label for="exampleInputEmail1">{{ trans('message.column.name') }}</label>
+            <input class="form-control" type="text" name="name" value="{{ $media->name }}" placeholder="Description" required>
+            @if ($errors->has('name'))
                 <span class="help-block">
-                        <strong>{{ $errors->first('description') }}</strong>
+                        <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
         </div>

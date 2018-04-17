@@ -44,7 +44,8 @@ return [
         'events' => 'Events',
         'cinema_schedule' => 'Cinema Schedule',
         'schedule_time' => 'Create time',
-        'manage_student' => 'Manage Student'
+        'manage_student' => 'Manage Student',
+        'manage_trainer'=>'Manage Trainer',
     ],
     'action' => [
         'edit' => 'Edit',
