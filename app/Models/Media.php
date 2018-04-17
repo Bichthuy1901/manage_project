@@ -11,5 +11,9 @@ class Media extends Model
     'path',
     'status',
     ];
+    public function getpathAttribute($value)
+    {
+    	return asset(config('custom.defaultMedia') . $value);
+    }
 
 }

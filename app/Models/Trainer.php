@@ -16,8 +16,9 @@ class Trainer extends Model
         'note',
         'orientation',
         'status',
+        'trainer_code',
     ];
-    protected $table = "lecturers";
+    protected $table = "trainers";
     public function TrainerStudent()
     {
     return $this->hasMany(TrainerStudent::class);

@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->integer('class_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->integer('branch_id')->unsigned();
-            $table->text('note');
+            $table->string('student_code',191);
             $table->timestamps();
         });
     }
