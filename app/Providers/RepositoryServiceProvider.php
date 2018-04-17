@@ -27,6 +27,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Constracts\MediaRepository::class,
             \App\Repositories\MediaRepositoryEloquent::class,
         ],
+        'trainer' => [
+            \App\Constracts\TrainerRepository::class,
+            \App\Repositories\TrainerRepositoryEloquent::class,
+        ],
     ];
     /**
      * Bootstrap the application services.
