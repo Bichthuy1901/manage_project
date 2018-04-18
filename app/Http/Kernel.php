@@ -40,6 +40,18 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'admin' => [
+            'auth',
+            'role.admin',
+        ],
+        'student' => [
+            'auth',
+            'role.student',
+        ],
+        'trainer' => [
+            'auth',
+            'role.trainer',
+        ]
     ];
 
     /**
@@ -56,5 +68,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'role.admin' => \App\Http\Middleware\isAdmin::class,
+        'role.student' => \App\Http\Middleware\isStudent::class,
+        'role.trainer' => \App\Http\Middleware\isTrainer::class,
     ];
 }

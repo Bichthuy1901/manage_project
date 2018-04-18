@@ -61,10 +61,21 @@
                         <tbody>
                             <tr>
                                 <td align="center" style="vertical-align: top;">
-                                    <form target="FormPanel_soicteducation_1" autocomplete="on">
+                                    <form method="POST" action="{{ route('login') }}" target="FormPanel_soicteducation_1" autocomplete="on">
+									{{ csrf_field() }}
 										<div>
-											<input class="form-control OEB" type="text" autocomplete="on" placeholder="Tên đăng nhập">
-											<input class="form-control OEB" type="password" autocomplete="on" placeholder="Mật khẩu" name="password">
+											<input class="form-control OEB" type="text" name="name" autocomplete="on" placeholder="Tên đăng nhập" required>
+											@if ($errors->has('name'))
+												<span class="help-block">
+													<strong>{{ $errors->first('name') }}</strong>
+												</span>
+											@endif
+											<input class="form-control OEB" type="password" name="password" autocomplete="on" placeholder="Mật khẩu" required>
+											@if ($errors->has('password'))
+												<span class="help-block">
+													<strong>{{ $errors->first('password') }}</strong>
+												</span>
+											@endif
 											<div class="checkbox LEB">
 												<label>
 													<input type="checkbox" value="on" tabindex="0"><span>Ghi nhớ đăng nhập</span>
@@ -72,28 +83,24 @@
 											</div>
 											<div class="gwt-HTML MEB"></div>
 										</div>
+										<table cellspacing="0" cellpadding="0">
+											<tbody>
+												<tr>
+													<td align="left" style="vertical-align: top;">
+														<button class="btn btn-primary" style="background-color: rgb(37, 60, 101);">
+															<div class="gwt-HTML buttonLoading-text">Đăng nhập</div>
+															<div class="gwt-HTML buttonLoading-status"></div>
+														</button>
+													</td>
+													<td align="left" style="vertical-align: top;">
+														<button type="button" class="btn btn-danger" style="background-color: rgb(211, 84, 77);">Hủy bỏ</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 									</form>
                                 </td>
                             </tr>
-                            <tr>
-								<td align="center" style="vertical-align: top;">
-									<table cellspacing="0" cellpadding="0">
-										<tbody>
-											<tr>
-												<td align="left" style="vertical-align: top;">
-													<button type="button" class="btn btn-primary" style="background-color: rgb(37, 60, 101);">
-														<div class="gwt-HTML buttonLoading-text">Đăng nhập</div>
-														<div class="gwt-HTML buttonLoading-status"></div>
-													</button>
-												</td>
-												<td align="left" style="vertical-align: top;">
-													<button type="button" class="btn btn-danger" style="background-color: rgb(211, 84, 77);">Hủy bỏ</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
                             <tr>
 								<td align="center" style="vertical-align: top;">
 									<table cellspacing="0" cellpadding="0">

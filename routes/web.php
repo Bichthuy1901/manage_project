@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/student-project-request', function () {
     return view('student.request_project');
-});
+})->middleware('admin');
 Route::get('/topics', function () {
     return view('student.topics');
 });
@@ -32,3 +32,6 @@ Route::group(['prefix'=> 'admin','namespace' => 'admin'], function()
 	Route::get('/user/delete/{id}', 'UserController@destroy');
     Route::get('/search-user', 'UserController@search');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

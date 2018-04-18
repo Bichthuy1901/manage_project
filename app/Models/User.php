@@ -49,4 +49,28 @@ class User extends Authenticatable
     {
         return asset(config('custom.defaultPath') . $value); //noi chuoi va tra lai duong dan
     }
+
+         /*
+     * Check Admin
+     */
+    public function isAdmin()
+    {
+        return $this->userable_type == 'admins';
+    }
+
+    /*
+     * Check Student
+     */
+    public function isStudent()
+    {
+        return $this->userable_type == 'students';
+    }
+
+    /*
+     * Check Trainers
+     */
+    public function isTrainer()
+    {
+        return $this->userable_type == 'lecturers';
+    }
 }
