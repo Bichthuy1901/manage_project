@@ -46,6 +46,15 @@
             @endif
         </div>
         <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.student_code') }}</label>
+            <input class="form-control" type="student_code" name="student_code" value="{{ old('student_code') }}" placeholder="Enter student_code" required>
+            @if ($errors->has('student_code'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('student_code') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.birthday') }}</label>
             <input class="form-control" type="date" name="birthday" value="{{ old('birthday') }}" placeholder="Enter birthday" required>
             @if ($errors->has('birthday'))

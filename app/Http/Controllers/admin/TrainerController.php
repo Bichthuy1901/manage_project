@@ -44,7 +44,12 @@ class TrainerController extends Controller
         $data = $request->all();
         $trainer= $this->trainer->create($data);
         if ($trainer)
-        {
+        {   $data_user = [
+                'name' => $trainer->trainer_code,
+                'password' => $trainer->trainer_code,
+                'userable_type' => 'trainers',
+                'userable_id' => $trainer->trainer_code
+            ];
             return redirect()->route('trainer.create')->with('success', trans('the trainer has been successfully!'));
 
         }

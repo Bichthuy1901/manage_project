@@ -11,7 +11,7 @@ use App\Constracts\BranchRepository;
 use App\Http\Requests\StudentRequest;
 
 
-class UserController extends Controller
+class StudentController extends Controller
 {
     protected $class, $student, $course, $branch;
 
@@ -56,9 +56,16 @@ class UserController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->all();
-        $user= $this->student->create($data);
-        if ($user)
+        $student= $this->student->create($data);
+        if ($student)
         {
+            $data_user = [
+                'name' => $student->student_code,
+                'password' => $student->student_code,
+                'userable_type' => 'students',
+                'userable_id' => $student->id
+            ];
+             $this->user->create($data);
             return redirect()->route('user.create')->with('success', trans('the user has been successfully!'));
 
         }
