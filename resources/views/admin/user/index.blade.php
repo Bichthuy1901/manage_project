@@ -10,7 +10,7 @@
 </ol>
 <div class="row header-custom">
     <div class="col-md-1">
-    <a class="btn btn-primary" href = "{{ route('user.create') }}">
+    <a class="btn btn-primary" href = "{{ route('student.create') }}">
     {{ trans('message.action.new') }}
     </a>
     </div>
@@ -22,7 +22,7 @@
       <tr>
           <th class="text-center">#</th>
           <th class="text-center">{{ trans('message.column.name') }}</th>
-          <th class="text-center">{{ trans('message.column.email') }}</th>
+          <th class="text-center">{{ trans('message.column.student_code') }}</th>
           <th class="text-center"></th>
       </tr>
     </thead>
@@ -34,7 +34,7 @@
           <th>{{ $student->name }}</th>
           <th>{{ $student->email }}</th>
           <th>
-            <a href = "{{ route('user.edit', ['id' => $student->id]) }}">
+            <a href = "{{ route('student.edit', ['id' => $student->id]) }}">
               <i class="fas fa-edit"></i>
             </a>
             @if (Auth::id() != $student->id)

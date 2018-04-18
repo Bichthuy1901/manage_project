@@ -26,13 +26,14 @@ Route::group(['prefix'=> 'admin','namespace' => 'admin'], function()
 	Route::get('/', function(){
 		return view ('admin.master');
 	})->name ('dashboard');
-	Route::resource('user','UserController');
+	Route::resource('student','StudentController');
     Route::resource('media' ,'MediaController');
      Route::resource('trainer' ,'TrainerController');
 
-	Route::get('/user/delete/{id}', 'UserController@destroy');
-    Route::get('/search-user', 'UserController@search');
+	Route::get('/student/delete/{id}', 'UserController@destroy');
+    Route::get('/search-student', 'UserController@search');
+    Route::get('/media/delete/{id}', 'MediaController@destroy');
+    Route::get('/trainer/delete/{id}', 'TrainerController@destroy');
+    Route::get('/search-trainer', 'TrainerController@search');
 });
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

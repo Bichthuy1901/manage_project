@@ -11,7 +11,7 @@ use App\Constracts\BranchRepository;
 use App\Http\Requests\StudentRequest;
 
 
-class UserController extends Controller
+class StudentController extends Controller
 {
     protected $class, $student, $course, $branch;
 
@@ -56,17 +56,23 @@ class UserController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->all();
-        $user= $this->student->create($data);
-        if ($user)
+        $student= $this->student->create($data);
+        if ($student)
         {
-            return redirect()->route('user.create')->with('success', trans('the user has been successfully!'));
+            $data_user = [
+                'name' => $student->student_code,
+                'password' => $student->student_code,
+                'userable_type' => 'students',
+                'userable_id' => $student->id
+            ];
+             $this->user->create($data);
+            return redirect()->route('student.create')->with('success', trans('the user has been successfully!'));
 
         }
         else 
         {
-            return redirect()->route('user.create')->with('error', trans('the user has been create failed!'));
+            return redirect()->route('student.create')->with('error', trans('the user has been create failed!'));
         }
-        dd($user);
     }
 
     /**
@@ -106,9 +112,9 @@ class UserController extends Controller
     {
        $data = $request->all();
        if ($this->student->update($id, $data)) {
-            return redirect()->route('user.edit', ['id' => $id])->with('error', trans('The user has been successfully edited!'));
+            return redirect()->route('student.edit', ['id' => $id])->with('error', trans('The user has been successfully edited!'));
         } else {
-            return redirect()->route('user.edit', ['id' => $id])->with('success', trans('The user has been edited failed!'));
+            return redirect()->route('student.edit', ['id' => $id])->with('success', trans('The user has been edited failed!'));
         }
     }
 

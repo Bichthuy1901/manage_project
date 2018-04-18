@@ -5,7 +5,7 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ trans('message.title.manage_users') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('student.index') }}">{{ trans('message.title.manage_users') }}</a></li>
     <li class="breadcrumb-item active">{{ trans('message.title.edit_user') }}</li>
 </ol>
 <div class="card card-register mx-auto mt-5">
@@ -21,7 +21,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <form method="POST" action="{{route('user.update', ['id'=>$user->id])}}">
+    <form method="POST" action="{{route('student.update', ['id'=>$user->id])}}">
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="id" value="{{$user->id}}">
     {{ csrf_field() }}  

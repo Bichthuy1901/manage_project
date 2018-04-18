@@ -22,7 +22,7 @@
       <tr>
           <th class="text-center">#</th>
           <th class="text-center">{{ trans('message.column.name') }}</th>
-          <th class="text-center">{{ trans('message.column.email') }}</th>
+          <th class="text-center">{{ trans('message.column.trainer_code') }}</th>
           <th class="text-center"></th>
       </tr>
     </thead>

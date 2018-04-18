@@ -5,7 +5,7 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('trainer.index') }}">{{ trans('message.title.manage_trainers') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('student.index') }}">{{ trans('message.title.manage_trainers') }}</a></li>
     <li class="breadcrumb-item active">{{ trans('message.title.create_trainer') }}</li>
 </ol>
 <div class="card card-register mx-auto mt-5">
@@ -21,7 +21,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <form method="POST" action="{{route('trainer.store')}}">
+    <form method="POST" action="{{route('student.store')}}">
     {{ csrf_field() }}  
         <div class="form-group">
             <div class="form-row">
@@ -42,6 +42,15 @@
             @if ($errors->has('email'))
                 <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.student_code') }}</label>
+            <input class="form-control" type="student_code" name="student_code" value="{{ old('student_code') }}" placeholder="Enter student_code" required>
+            @if ($errors->has('student_code'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('student_code') }}</strong>
                 </span>
             @endif
         </div>

@@ -37,6 +37,19 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-12">
+                <label for="exampleInputName">{{ trans('message.column.trainer_code') }}</label>
+                <input class="form-control" type="text" name="trainer_code" value="{{ old('trainer_code') }}" placeholder="Enter trainer_code" required>
+                @if ($errors->has('trainer_code'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('trainer_code') }}</strong>
+                    </span>
+                @endif
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.email') }}</label>
             <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
             @if ($errors->has('email'))

@@ -12,7 +12,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="{{route('user.index' )}}">
+          <a class="nav-link" href="{{route('student.index' )}}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">{{trans('message.title.manage_student')}}</span>
           </a>
@@ -27,7 +27,7 @@
           <a class="nav-link" href="{{route('trainer.index' )}}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">{{trans('message.title.manage_trainer')}}</span>
-          </a>trainer
+          </a>
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
