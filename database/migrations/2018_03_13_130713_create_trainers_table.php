@@ -21,7 +21,7 @@ class CreateTrainersTable extends Migration
             $table->string('address',191);
             $table->string('email',191);
             $table->string('phone',191);
-            $table->integer('branch_id')->unsigned();
+            $table->integer('orientation');
             $table->text('note');
             $table->timestamps();
         });

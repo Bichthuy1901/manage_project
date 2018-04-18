@@ -5,14 +5,14 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('trainer.index') }}">{{ trans('message.title.manage_trainers') }}</a></li>
-    <li class="breadcrumb-item active">{{ trans('message.title.create_trainer') }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('trainer.index') }}">{{ trans('message.title.manage_users') }}</a></li>
+    <li class="breadcrumb-item active">{{ trans('message.title.edit_trainer') }}</li>
 </ol>
 <div class="card card-register mx-auto mt-5">
-    <div class="card-header">{{ trans('message.title.create_trainer') }}</div>
+    <div class="card-header">{{ trans('message.title.edit_trainer') }}</div>
     <div class="card-body">
     @if (session('error'))            <!--thong bao cho nguoi dung khi thực hiện câu lệnh-->
-        <div class="alert alert-success"
+        <div class="alert alert-success">
             {{ session('error') }}
         </div>
     @endif
@@ -21,13 +21,15 @@
             {{ session('success') }}
         </div>
     @endif
-    <form method="POST" action="{{route('trainer.store')}}">
+    <form method="POST" action="{{route('trainer.update', ['id'=>$trainers->id])}}">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="id" value="{{$trainer->id}}">
     {{ csrf_field() }}  
         <div class="form-group">
             <div class="form-row">
                 <div class="col-md-12">
                 <label for="exampleInputName">{{ trans('message.column.name') }}</label>
-                <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Enter name" required>
+                <input class="form-control" type="text" name="name" value="{{ $trainers->name }}" placeholder="Enter name" required>
                 @if ($errors->has('name'))
                     <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -38,7 +40,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.email') }}</label>
-            <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
+            <input class="form-control" type="email" name="email" value="{{ $trainers->email }}" placeholder="Enter email" required>
             @if ($errors->has('email'))
                 <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -47,17 +49,19 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.birthday') }}</label>
-            <input class="form-control" type="date" name="birthday" value="{{ old('birthday') }}" placeholder="Enter birthday" required>
+            <input class="form-control" type="date" name="birthday" value="{{ $trainer->birthday }}" placeholder="Enter birthday" required>
             @if ($errors->has('birthday'))
                 <span class="help-block">
                         <strong>{{ $errors->first('birthday') }}</strong>
                 </span>
             @endif
         </div>
+        
+         
 
         <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.address') }}</label>
-            <input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Enter Address" required>
+            <input class="form-control" type="text" name="address" value="{{ $trainers->address }}" placeholder="Enter Address" required>
             @if ($errors->has('address'))
                 <span class="help-block">
                         <strong>{{ $errors->first('address') }}</strong>
@@ -66,7 +70,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.phone') }}</label>
-            <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" placeholder="Enter phone" required>
+            <input class="form-control" type="text" name="phone" value="{{ $trainers->phone}}" placeholder="Enter phone" required>
             @if ($errors->has('phone'))
                 <span class="help-block">
                         <strong>{{ $errors->first('phone') }}</strong>
@@ -75,7 +79,7 @@
         </div>
          <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.note') }}</label>
-            <input class="form-control" type="text" name="note" value="{{ old('note') }}" placeholder="Enter note" required>
+            <input class="form-control" type="text" name="note" value="{{ $trainers->note }}" placeholder="Enter note" required>
             @if ($errors->has('note'))
                 <span class="help-block">
                         <strong>{{ $errors->first('note') }}</strong>
@@ -83,15 +87,24 @@
             @endif
         </div>
         <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.orientation') }}</label>
+            <input class="form-control" type="text" name="orientation" value="{{ $trainers->orientation}}" placeholder="Enter note" required>
+            @if ($errors->has('orientation'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('orientation') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.gender') }}</label>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="1" checked>{{ trans('message.config.male') }}
+                    <input type="radio" name="gender" value="1" @if ($trainers->gender == config('custom.male')) checked @endif>{{ trans('message.config.male') }}
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="0">{{ trans('message.config.female') }}
+                    <input type="radio" name="gender" value="0" @if ($trainers->gender== config('custom.female')) checked @endif>{{ trans('message.config.female') }}
                 </label>
             </div>
         </div>

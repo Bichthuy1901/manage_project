@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Trainers;
 
 class TrainerRequest extends FormRequest
-{
+{   
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,28 +28,27 @@ class TrainerRequest extends FormRequest
         if ($this->isMethod('PUT')) {
             $arr = [
                 'name' =>'required|max:255',
-                'email'=> 'max:255|email|unique:students,email,'.$request->id,
+                'email'=> 'max:255|email|unique:lecturers,email,'.$request->id,
                 'address'=>'required|max:255',
                 'gender'=>'required|numeric',
                 'birthday'=>'required|date',
                 'phone'=>'max:11|min:10|required',
-                'branch_id'=>'required|numeric',
+                'orientation '=>'required',
                 'note'=>'required',
-                'status'=>'required|numeric'
+                
             ];
             
             return $arr;
         }
         return [
             'name' =>'required|max:255',
-            'email'=> 'max:255|email|unique:students',
+            'email'=> 'max:255|email|unique:lecturers',
             'address'=>'required|max:255',
             'gender'=>'required|numeric',
             'birthday'=>'required|date',
             'phone'=>'max:11|min:10|required',
-            'branch_id'=>'required|numeric',
+            'orientation'=>'required',
             'note'=>'required',
-            'status'=>'required|numeric'
         ];
     }
 }

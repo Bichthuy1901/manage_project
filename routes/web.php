@@ -28,6 +28,7 @@ Route::group(['prefix'=> 'admin','namespace' => 'admin'], function()
 	})->name ('dashboard');
 	Route::resource('user','UserController');
     Route::resource('media' ,'MediaController');
+     Route::resource('trainer' ,'TrainerController');
 
 	Route::get('/user/delete/{id}', 'UserController@destroy');
     Route::get('/search-user', 'UserController@search');
