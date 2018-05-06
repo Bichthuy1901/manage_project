@@ -4,16 +4,16 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Constracts\TrainerRepository;
+use App\Constracts\AdminRepository;
 use App\Constracts\UserRepository;
 
-use App\Http\Requests\TrainerRequest;
+use App\Http\Requests\AdminRequest;
 
-class TrainerController extends Controller
-{    protected $trainer, $user;
+class AdminController extends Controller
+{    protected $admin, $user;
 
-    public function __construct(TrainerRepository $trainer, UserRepository $user) {
-        $this->trainer = $trainer;
+    public function __construct(AdminRepository $admin, UserRepository $user) {
+        $this->admin = $admin;
         $this->user = $user;
     }
     /**
@@ -23,9 +23,9 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        $trainers= $this->trainer->paginate(10, []);
+        $admins= $this->admin->paginate(10, []);
 
-        return view ('admin.trainer.index' ,compact('trainers'));
+        return view ('admin.admin.index' ,compact('admins'));
     }
 
     /**
@@ -35,7 +35,7 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('admin.trainer.create');
+        return view('admin.admin.create');
     }
 
     /**
@@ -44,25 +44,25 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TrainerRequest $request)
+    public function store(AdminRequest $request)
     {
         $data = $request->all();
-        $trainer= $this->trainer->create($data);
-        if ($trainer)
+        $admin= $this->admin->create($data);
+        if ($admin)
         {   
             $data_user = [
-                'name' => $trainer->trainer_code,
-                'password' => $trainer->trainer_code,
-                'userable_type' => 'App/Models/Trainer',
-                'userable_id' => $trainer->id
+                'name' => $admin->email,
+                'password' => '123456',
+                'userable_type' => 'App/Models/Admin',
+                'userable_id' => $admin->id
             ];
             $this->user->create($data_user);
-            return redirect()->route('trainer.create')->with('success', trans('the trainer has been successfully!'));
+            return redirect()->route('admin.create')->with('success', trans('Admin has been successfully!'));
 
         }
         else 
         {
-            return redirect()->route('trainer.create')->with('error', trans('the trainer has been create failed!'));
+            return redirect()->route('admin.create')->with('error', trans('Admin has been create failed!'));
         }
     }
 
@@ -85,8 +85,8 @@ class TrainerController extends Controller
      */
     public function edit($id)
     {
-        $trainer = $this->trainer->find($id, []);
-        return view('admin.trainer.edit', compact('trainer'));
+        $admin = $this->admin->find($id, []);
+        return view('admin.admin.edit', compact('admin'));
     }
 
     /**
@@ -96,13 +96,13 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TrainerRequest $request, $id)
+    public function update(AdminRequest $request, $id)
     {
          $data = $request->all();
-       if ($this->trainer->update($id, $data)) {
-            return redirect()->route('trainer.edit', ['id' => $id])->with('error', trans('The trainer has been successfully edited!'));
+       if ($this->admin->update($id, $data)) {
+            return redirect()->route('admin.edit', ['id' => $id])->with('error', trans('The trainer has been successfully edited!'));
         } else {
-            return redirect()->route('trainer.edit', ['id' => $id])->with('success', trans('The trainer has been edited failed!'));
+            return redirect()->route('admin.edit', ['id' => $id])->with('success', trans('The trainer has been edited failed!'));
         }
     }
 
@@ -115,8 +115,8 @@ class TrainerController extends Controller
     public function destroy($id, Request $request)
     {
         if($request->ajax()){
-            if ($this->trainer->delete($id)){
-                $user = $this->user->model()->where('userable_type', 'App/Models/Trainer')
+            if ($this->admin->delete($id)){
+                $user = $this->user->model()->where('userable_type', 'App/Models/Admin')
                 ->where('userable_id', $id)->delete();    
                 return response(['status'=>trans('messages.success')]);
             }
@@ -125,9 +125,9 @@ class TrainerController extends Controller
     }
     public function search(Request $request){
         if ($request->ajax()) {
-            $trainers = $this->trainer->search($request->keyword);
-            $view = view('admin.trainer.list_trainer', compact('trainers'))->render();
-             return response(['trainers' => $view]);
+            $admins = $this->admin->search($request->keyword);
+            $view = view('admin.admin.list_admin', compact('admins'))->render();
+             return response(['admins' => $view]);
         }
 
     }

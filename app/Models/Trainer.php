@@ -28,9 +28,9 @@ class Trainer extends Model
         return $this->hasOne(user::class);
 
     }
-    public function project()
+    public function projects()
     {
-        return $this->hasmany(project::class);
+        return $this->hasmany(Project::class);
     }
 
 }

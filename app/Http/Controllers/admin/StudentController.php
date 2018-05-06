@@ -8,18 +8,26 @@ use App\Constracts\ClassRepository;
 use App\Constracts\StudentRepository;
 use App\Constracts\CourseRepository;
 use App\Constracts\BranchRepository;
+use App\Constracts\UserRepository;
 use App\Http\Requests\StudentRequest;
 
 
 class StudentController extends Controller
 {
-    protected $class, $student, $course, $branch;
+    protected $class, $student, $course, $branch, $user;
 
-    public function __construct(ClassRepository $class, StudentRepository $student, CourseRepository $course, BranchRepository $branch ) {
+    public function __construct(
+        ClassRepository $class,
+        StudentRepository $student,
+        CourseRepository $course,
+        BranchRepository $branch,
+        UserRepository $user 
+    ) {
         $this->student = $student;
         $this->class = $class;
         $this->course = $course;
         $this->branch = $branch;
+        $this->user = $user;
     }
 
     /**
@@ -30,7 +38,7 @@ class StudentController extends Controller
     public function index()
     {
       $students= $this->student->paginate(10, []);
-      return view ('admin.user.index' ,compact('students'));
+      return view ('admin.student.index' ,compact('students'));
     }
 
     /**
@@ -44,7 +52,7 @@ class StudentController extends Controller
         $courses = $this->course->all();
         $branches = $this->branch->all();
 
-        Return view('admin.user.create', compact('classes', 'courses', 'branches'));
+        Return view('admin.student.create', compact('classes', 'courses', 'branches'));
     }
 
     /**
@@ -62,16 +70,17 @@ class StudentController extends Controller
             $data_user = [
                 'name' => $student->student_code,
                 'password' => $student->student_code,
-                'userable_type' => 'students',
+                'userable_type' => 'App/Models/Student',
                 'userable_id' => $student->id
             ];
-             $this->user->create($data);
-            return redirect()->route('student.create')->with('success', trans('the user has been successfully!'));
+
+             $this->user->create($data_user);
+            return redirect()->route('student.create')->with('success', trans('Student has been successfully!'));
 
         }
         else 
         {
-            return redirect()->route('student.create')->with('error', trans('the user has been create failed!'));
+            return redirect()->route('student.create')->with('error', trans('Student has been create failed!'));
         }
     }
 
@@ -98,7 +107,7 @@ class StudentController extends Controller
         $branches = $this->branch->all();
 
         $user = $this->student->find($id, []);
-        return view('admin.user.edit',compact('user', 'classes', 'courses', 'branches'));
+        return view('admin.student.edit',compact('user', 'classes', 'courses', 'branches'));
     }
 
     /**
@@ -128,6 +137,9 @@ class StudentController extends Controller
     {
         if($request->ajax()){
             if ($this->student->delete($id)){
+                $user = $this->user->model()->where('userable_type', 'App/Models/Student')
+                    ->where('userable_id', $id);
+                $user->delete();
                 return response(['status'=>trans('messages.success')]);
             }
             return response(['status'=>trans('messages.failed')]);
@@ -136,7 +148,7 @@ class StudentController extends Controller
     public function search(Request $request){
         if ($request->ajax()) {
             $students = $this->student->search($request->keyword);
-            $view = view('admin.user.list_user', compact('students'))->render();
+            $view = view('admin.student.list_user', compact('students'))->render();
              return response(['students' => $view]);
         }
 

@@ -6,7 +6,7 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active">{{ trans('message.title.manage_trainers') }}</li>
+    <li class="breadcrumb-item active">{{ trans('message.title.manage_admin') }}</li>
 </ol>
 <div class="row header-custom">
     <div class="col-md-1">

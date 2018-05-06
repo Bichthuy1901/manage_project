@@ -1,9 +1,24 @@
 <div class="AKB">
-   <a class="btn-link KIB" href="javascript:;">Đăng xuất</a> <img class="BJB" src="../images/Google.png" data-original-title="" title=""> <a class="btn-link KIB" href="javascript:;">-</a> <img class="BJB" src="../images/Facebook.png" data-original-title="" title=""> <a class="btn-link KIB" href="javascript:;">- Đổi mật khẩu -</a> <a class="btn-link KIB" href="javascript:;"><i class="fa fa-user"></i> Bích Thùy</a> 
+   <a class="btn-link KIB" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+        Logout
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
+   <img class="BJB" src="../images/Google.png" data-original-title="" title="">
+   <a class="btn-link KIB" href="javascript:;">-</a>
+   <img class="BJB" src="../images/Facebook.png" data-original-title="" title="">
+   <a class="btn-link KIB" href="javascript:;">- Đổi mật khẩu -</a>
+   <a class="btn-link KIB" href="javascript:;"><i class="fa fa-user"></i>{{ Auth::user()->Student->name }}</a> 
    <table cellspacing="0" cellpadding="0" class="imageAvatar">
       <tbody>
          <tr>
-            <td align="center" style="vertical-align: middle;"><img class="gwt-Image" aria-hidden="true" style="display: none; width: 25px;"></td>
+            <td align="center" style="vertical-align: middle;">
+                <img class="gwt-Image" aria-hidden="true" style="display: none; width: 25px;">
+            </td>
          </tr>
          <tr>
             <td align="center" style="vertical-align: middle;"><img src="../images/default_avatar.jpg" class="gwt-Image" style="width: 25px;"></td>

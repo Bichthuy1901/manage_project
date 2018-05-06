@@ -31,31 +31,31 @@ class User extends Authenticatable
     ];
     public function Admin()
     {
-        return $this->belongto(Admin::class);//1 tai khoan user se thuoc 1 admin
+        return $this->belongsTo(Admin::class);//1 tai khoan user se thuoc 1 admin
     }
     public function Student()
     {
-        return $this->belongto(Student::class);
+        return $this->belongsTo(Student::class, 'name', 'student_code');
     }
-    public function Lecturer()
+    public function Trainer()
     {
-        return $this->belongto(Lecturer::class);
+        return $this->belongsTo(Trainer::class, 'name', 'trainer_code');
     }
     public function setPasswordAttribute($value)//set :quy dinh du lieu duoc luu trong bang
     {  
-        $this->atrributes['password']= bcrypt($value);//ma hoa password
+        $this->attributes['password']= bcrypt($value);//ma hoa password
     } 
     public function getAvatarAttribute($value)
     {
         return asset(config('custom.defaultPath') . $value); //noi chuoi va tra lai duong dan
     }
 
-         /*
+    /*
      * Check Admin
      */
     public function isAdmin()
     {
-        return $this->userable_type == 'admins';
+        return $this->userable_type == 'App/Models/Admin';
     }
 
     /*
@@ -63,7 +63,7 @@ class User extends Authenticatable
      */
     public function isStudent()
     {
-        return $this->userable_type == 'students';
+        return $this->userable_type == 'App/Models/Student';
     }
 
     /*
@@ -71,6 +71,6 @@ class User extends Authenticatable
      */
     public function isTrainer()
     {
-        return $this->userable_type == 'lecturers';
+        return $this->userable_type == 'App/Models/Trainer';
     }
 }

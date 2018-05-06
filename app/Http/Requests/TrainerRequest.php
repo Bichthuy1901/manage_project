@@ -28,7 +28,8 @@ class TrainerRequest extends FormRequest
         if ($this->isMethod('PUT')) {
             $arr = [
                 'name' =>'required|max:255',
-                'email'=> 'max:255|email|unique:lecturers,email,'.$request->id,
+                'email'=> 'max:255|email|unique:trainers,email,'.$request->id,
+                'trainer_code' => 'required|unique:trainers,trainer_code,'.$request->id,
                 'address'=>'required|max:255',
                 'gender'=>'required|numeric',
                 'birthday'=>'required|date',
@@ -42,7 +43,8 @@ class TrainerRequest extends FormRequest
         }
         return [
             'name' =>'required|max:255',
-            'email'=> 'max:255|email|unique:lecturers',
+            'email'=> 'max:255|email|unique:trainers',
+            'trainer_code' => 'required|unique:trainers',
             'address'=>'required|max:255',
             'gender'=>'required|numeric',
             'birthday'=>'required|date',

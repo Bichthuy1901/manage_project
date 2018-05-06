@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -52,15 +52,18 @@ class LoginController extends Controller
         ];
 
         $auth = Auth::attempt($data);
+        
         if ($auth) {
-            if (Auth::user()->userable_type == 'students') {
-                return 'student page';
+            if (Auth::user()->userable_type == 'App/Models/Student') {
+                return redirect()->route('student.project_request');
             }
-            if (Auth::user()->userable_type == 'admins') {
-                return 'admin page';
+
+            if (Auth::user()->userable_type == 'App/Models/Admin') {
+                return redirect()->route('dashboard');
             }
-            if (Auth::user()->userable_type == 'lecturers') {
-                return 'trainer page';
+
+            if (Auth::user()->userable_type == 'App/Models/Trainer') {
+                return redirect()->route('trainer');
             }
         }
         return redirect()->back();
