@@ -5,11 +5,11 @@
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard') }}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item"><a href="{{ route('student.index') }}">{{ trans('message.title.manage_users') }}</a></li>
-    <li class="breadcrumb-item active">{{ trans('message.title.edit_user') }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('student.index') }}">{{ trans('message.title.manage_students') }}</a></li>
+    <li class="breadcrumb-item active">{{ trans('message.title.edit_student') }}</li>
 </ol>
 <div class="card card-register mx-auto mt-5">
-    <div class="card-header">{{ trans('message.title.edit_user') }}</div>
+    <div class="card-header">{{ trans('message.title.edit_student') }}</div>
     <div class="card-body">
     @if (session('error'))            <!--thong bao cho nguoi dung khi thực hiện câu lệnh-->
         <div class="alert alert-success">
@@ -57,6 +57,15 @@
             @endif
         </div>
         <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.student_code') }}</label>
+            <input class="form-control" type="student_code" name="student_code" value="{{ $user->student_code }}" placeholder="Enter student_code" required>
+            @if ($errors->has('student_code'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('student_code') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.class_id') }}</label>
             <select name="class_id" class="form-control">
             @foreach ($classes as $class)
@@ -96,15 +105,6 @@
             @if ($errors->has('phone'))
                 <span class="help-block">
                         <strong>{{ $errors->first('phone') }}</strong>
-                </span>
-            @endif
-        </div>
-         <div class="form-group">
-            <label for="exampleInputEmail1">{{ trans('message.column.note') }}</label>
-            <input class="form-control" type="text" name="note" value="{{ $user->note }}" placeholder="Enter note" required>
-            @if ($errors->has('note'))
-                <span class="help-block">
-                        <strong>{{ $errors->first('note') }}</strong>
                 </span>
             @endif
         </div>

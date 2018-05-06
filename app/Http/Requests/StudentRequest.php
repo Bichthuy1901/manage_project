@@ -34,7 +34,7 @@ class StudentRequest extends FormRequest
                 'birthday'=>'required|date',
                 'phone'=>'max:11|min:10|required',
                 'branch_id'=>'required|numeric',
-                'note'=>'required',
+                'student_code'=>'required|unique:students,student_code,'.$request->id,
                 'class_id'=>'required|numeric',
                 'course_id'=>'required|numeric'
             ];
@@ -49,7 +49,7 @@ class StudentRequest extends FormRequest
             'birthday'=>'required|date',
             'phone'=>'max:11|min:10|required',
             'branch_id'=>'required|numeric',
-            'note'=>'required',
+            'student_code'=>'required|unique:students',
             'class_id'=>'required|numeric',
             'course_id'=>'required|numeric'
         ];

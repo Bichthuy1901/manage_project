@@ -42,11 +42,22 @@
                </div>
                <div class="OIB" style="width: 100% !important">
                   <div class="LMB">
-                     <form target="GWTBootstrap3_AbstractForm_soicteducationstudent_1" role="form" class="form-horizontal">
+                     <form role="form" class="form-horizontal" method="POST" action="{{route('student.project_request.store')}}">
+                        {{ csrf_field() }}  
                         <div class="col-xs-12 col-sm-9 col-md-9" style="text-align: -webkit-center; min-height: 400px;">
                            <div class="PLB" style="width: 100%;">
                               <fieldset>
-                                 <legend>Đăng ký nguyện vọng Giáo viên cho Đồ án kỳ 20172</legend>
+                                 <legend>Đăng ký nguyện vọng Giáo viên</legend>
+                                    @if (session('error'))            <!--thong bao cho nguoi dung khi thực hiện câu lệnh-->
+                                          <div class="alert alert-success"
+                                                {{ session('error') }}
+                                          </div>
+                                    @endif
+                                    @if (session('success'))
+                                          <div class="alert alert-success">
+                                                {{ session('success') }}
+                                          </div>
+                                    @endif
                                  <table cellspacing="0" cellpadding="0" style="width: 100%;">
                                     <tbody>
                                        <tr></tr>
@@ -55,137 +66,65 @@
                                  <div class="form-group">
                                     <label class="control-label col-lg-4" for="formEmail">Chọn Nguyện vọng</label>
                                     <div class="col-lg-8">
-                                       <select class="form-control">
-                                          <option value="-1">[Chọn nguyện vọng]</option>
-                                          <option value="5637989979914240">KTMT [Hệ CNCN ] [IT3941 ] Từ 25-01-2018 đến 28-01-2018</option>
-                                          <option value="5649665110310912">CNPM [Hệ DHCQ CNCN CNKT KSCLC KSTN ] [IT5240 IT4996 IT5104 IT5130 ] Từ 03-01-2018 đến 19-01-2018</option>
-                                          <option value="5660733509468160">HTTT [Hệ DHCQ CNCN CNKT HEDSPI-A CTTT KSTN KSCLC ] [IT5100 IT5230 IT4995 IT4996 IT5104 IT5130 IT5120E ] Từ 28-12-2017 đến 17-01-2018</option>
-                                          <option value="5699146489004032">KHMT [Hệ DHCQ CNCN CNKT KSCLC KSTN CTTT HEDSPI-A ] [IT5210 IT4996 IT5104 IT5130 ] Từ 15-01-2018 đến 19-01-2018</option>
-                                          <option value="5706437330206720">TTM [Hệ DHCQ CNCN CNKT KSTN KSCLC HEDSPI-A CTTT ] [IT4711 IT4995 IT5250 IT5120E IT5100 IT4996 IT5104 IT5120 IT5130 ] Từ 15-01-2018 đến 26-01-2018</option>
-                                          <option value="5744948892663808">KTMT [Hệ CNCN ] [IT4996 ] Từ 25-01-2018 đến 28-01-2018</option>
-                                       </select>
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="formEmail">Trạng thái</label>
-                                    <div class="col-md-8">
-                                       <div class="gwt-HTML"></div>
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-md-4" for="formEmail">Họ tên (*)</label>
-                                    <div class="col-md-8"><input type="text" class="form-control" placeholder="Họ tên ..." disabled="" dir="ltr"></div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Email (*)</label>
-                                    <div class="col-lg-8"><input type="text" class="form-control" placeholder="Email ..." dir="ltr"></div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Điện thoại</label>
-                                    <div class="col-lg-8"><input type="text" class="form-control" placeholder="Điện thoại ..." dir="ltr"></div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">CV cho Giảng viên</label>
-                                    <div class="col-lg-8">
-                                       <div>
-                                          <div style="position: relative; overflow: hidden; width: 100px; height: 22px; margin-left: 3%;">
-                                             <input type="file" class="gwt-FileUpload" style="display: none;">
-                                             <div class="gwt-Label" style="width: 100%; height: 100%; cursor: pointer;">
-                                                <div style="background-image: url(&quot;../images/upload-button.png&quot;); background-position: 0px 0px; width: 100%; height: 100%;"></div>
-                                             </div>
-                                          </div>
-                                          <div class="gwt-HTML"><a href="https://storage.googleapis.com/soict-edu.appspot.com/CVs/1516349774583_PhamTuanSang.pdf">CV</a></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Hệ đào tạo</label>
-                                    <div class="col-lg-8"><select class="form-control"></select></div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Chọn Đơn vị</label>
-                                    <div class="col-lg-8">
-                                       <div><select class="form-control"></select><a class="gwt-Anchor">Danh sách đề tài</a></div>
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Môn Đồ án</label>
-                                    <div class="col-lg-8"><select class="form-control"></select></div>
-                                 </div>
-                                 <div class="form-group">
-                                    <label class="control-label col-lg-4" for="formEmail">Ghi chú cho GV</label>
-                                    <div class="col-lg-8"><textarea class="form-control"></textarea></div>
-                                 </div>
-                                 <div class="OLB" aria-hidden="true" style="display: none;">
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Nguyện vọng GVHD</label>
-                                       <div class="col-lg-8"><select class="form-control"></select></div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Hướng đề tài</label>
-                                       <div class="col-lg-8">
-                                          <div>
-                                             <div class="gwt-HTML"></div>
-                                             <a class="gwt-Anchor">Chọn đề tài</a>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Trạng thái</label>
-                                       <div class="col-lg-8">
-                                          <select class="form-control">
-                                             <option value="-2">[Chọn trạng thái]</option>
-                                             <option value="1">Gíao viên đã chấp nhận</option>
-                                             <option value="0">Giáo viên chưa chấp nhận</option>
+                                          <select class="form-control" name="type_id">
+                                                <option>[Chọn nguyện vọng]</option>
+                                                @foreach ($types as $type)
+                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @endforeach
                                           </select>
-                                          <div class="gwt-HTML" style="color: red;"></div>
-                                       </div>
+                                          @if ($errors->has('type_id'))
+                                                <span class="help-block">
+                                                      <strong>{{ $errors->first('type_id') }}</strong>
+                                                </span>
+                                          @endif
                                     </div>
                                  </div>
-                                 <div class="OLB" aria-hidden="true" style="display: none;">
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">GVHD: Nguyện vọng 2</label>
-                                       <div class="col-lg-8"><select class="form-control"></select></div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Hướng đề tài</label>
-                                       <div class="col-lg-8">
-                                          <div>
-                                             <div class="gwt-HTML"></div>
-                                             <a class="gwt-Anchor">Chọn đề tài</a>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Trạng thái</label>
-                                       <div class="col-lg-8">
-                                          <div class="gwt-HTML" style="color: red;"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="OLB" aria-hidden="true" style="display: none;">
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">GVHD: Nguyện vọng 3</label>
-                                       <div class="col-lg-8"><select class="form-control"></select></div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Hướng đề tài</label>
-                                       <div class="col-lg-8">
-                                          <div>
-                                             <div class="gwt-HTML"></div>
-                                             <a class="gwt-Anchor">Chọn đề tài</a>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label col-lg-4" for="formEmail">Trạng thái</label>
-                                       <div class="col-lg-8">
-                                          <div class="gwt-HTML" style="color: red;"></div>
-                                       </div>
+                                 <hr>
+                                 <div class="form-group">
+                                    <label class="control-label col-lg-4" for="formEmail">Tên đề tài</label>
+                                    <div class="col-lg-8">
+                                          <input type="text" class="form-control" name="name" dir="ltr">
+                                          @if ($errors->has('name'))
+                                                <span class="help-block">
+                                                      <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                          @endif
                                     </div>
                                  </div>
                                  <div class="form-group">
-                                    <div class="col-lg-offset-4 col-lg-10"><button type="button" class="btn btn-success">Lưu</button></div>
+                                    <label class="control-label col-lg-4" for="formEmail">File đính kèm</label>
+                                    <div class="col-lg-8"><input type="file" class="form-control" dir="ltr"></div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="control-label col-lg-4" for="formEmail">Mô tả</label>
+                                    <div class="col-lg-8">
+                                          <textarea class="form-control" name="description"></textarea>
+                                          @if ($errors->has('description'))
+                                                <span class="help-block">
+                                                      <strong>{{ $errors->first('description') }}</strong>
+                                                </span>
+                                          @endif
+                                    </div>
+                                 </div>
+                                 <hr>
+                                 <div class="form-group">
+                                    <label class="control-label col-lg-4" for="formEmail">Chọn người hướng dẫn</label>
+                                    <div class="col-lg-8">
+                                          <select class="form-control" name="trainer_id">
+                                          <option>[Chọn người hướng dẫn]</option>
+                                          @foreach ($trainers as $trainer)
+                                          <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
+                                          @endforeach
+                                          </select>
+                                          @if ($errors->has('trainer_id'))
+                                                <span class="help-block">
+                                                      <strong>{{ $errors->first('trainer_id') }}</strong>
+                                                </span>
+                                          @endif
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="col-lg-offset-4 col-lg-10"><button class="btn btn-success">Lưu</button></div>
                                  </div>
                               </fieldset>
                            </div>

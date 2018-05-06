@@ -12,7 +12,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    url: '/admin/trainers/delete/' + id,
+                    url: '/admin/trainer/delete/' + id,
                     type: 'GET',
                     success: function (res) {
                         swal(

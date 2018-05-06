@@ -11,4 +11,5 @@ class Branch extends Model
         'description',
     ];
 
+    protected $table = "branchs";
 }

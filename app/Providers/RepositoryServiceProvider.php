@@ -31,6 +31,22 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Constracts\TrainerRepository::class,
             \App\Repositories\TrainerRepositoryEloquent::class,
         ],
+        'user' => [
+            \App\Constracts\UserRepository::class,
+            \App\Repositories\UserRepositoryEloquent::class,
+        ],
+        'admin' => [
+            \App\Constracts\AdminRepository::class,
+            \App\Repositories\AdminRepositoryEloquent::class,
+        ],
+        'project' => [
+            \App\Constracts\ProjectRepository::class,
+            \App\Repositories\ProjectRepositoryEloquent::class,
+        ],
+        'type' => [
+            \App\Constracts\TypeRepository::class,
+            \App\Repositories\TypeRepositoryEloquent::class,
+        ],
     ];
     /**
      * Bootstrap the application services.
