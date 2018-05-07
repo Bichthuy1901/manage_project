@@ -12,6 +12,8 @@ class Project extends Model
        'trainer_id',
        'description',
        'status',
+       'attach_file',
+       'student_id',
     ];
 
     public function student()
@@ -23,4 +25,10 @@ class Project extends Model
     {
         return $this->belongsTo(Trainer::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
 }

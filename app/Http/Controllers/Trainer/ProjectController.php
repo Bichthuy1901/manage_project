@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Trainer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,7 +31,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = $this->project->getProjectByStatus([config('custom.project.status.request')], ['type', 'student']);
+
+        return view('trainer.project.request', compact('projects'));
     }
 
     /**
@@ -41,10 +43,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $trainers = $this->trainer->all();
-        $types = $this->type->all();
-
-        return view('student.request_project', compact('trainers', 'types'));
+        //
     }
 
     /**
@@ -53,19 +52,9 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['status'] = config('custom.project.status.request');
-        $data['student_id'] = Auth::user()->Student->id;
-        $data['attach_file'] = Helper::upload($request->attach_file, config('custom.project.defaultAttachFilePath') . '/' . $data['student_id']);
-
-        $project = $this->project->create($data);
-        if ($project) {
-            return redirect()->route('student.project_request.store')->with('success', 'Project has been successfully requested!');
-        } else {
-            return redirect()->route('student.project_request.store')->with('error', 'Project has been requested failed!');
-        }
+        //
     }
 
     /**

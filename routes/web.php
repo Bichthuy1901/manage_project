@@ -45,6 +45,6 @@ Route::group(['namespace' => 'Student', 'middleware' => 'student'], function()
 
 Route::group(['prefix'=> 'trainer','namespace' => 'Trainer'], function()
 {
-
+    Route::get('/student-project-request', 'ProjectController@index')->name('trainer.project_request.index');
 });
 Auth::routes();

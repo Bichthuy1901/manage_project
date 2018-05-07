@@ -25,14 +25,14 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
-@include('admin.layout.nav')
+@include('trainer.layout.nav')
   <div class="content-wrapper">
     <div class="container-fluid">
       @yield('content-admin')
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
-  @include('admin.layout.footer')
+  @include('trainer.layout.footer')
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
 use App\Constracts\MediaRepository;
 use App\Helper\Helper;
+
 class MediaController extends Controller
 {
     protected $media;
