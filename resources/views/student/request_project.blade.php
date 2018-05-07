@@ -42,7 +42,7 @@
                </div>
                <div class="OIB" style="width: 100% !important">
                   <div class="LMB">
-                     <form role="form" class="form-horizontal" method="POST" action="{{route('student.project_request.store')}}">
+                     <form role="form" class="form-horizontal" method="POST" action="{{route('student.project_request.store')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}  
                         <div class="col-xs-12 col-sm-9 col-md-9" style="text-align: -webkit-center; min-height: 400px;">
                            <div class="PLB" style="width: 100%;">
@@ -93,7 +93,12 @@
                                  </div>
                                  <div class="form-group">
                                     <label class="control-label col-lg-4" for="formEmail">File đính kèm</label>
-                                    <div class="col-lg-8"><input type="file" class="form-control" dir="ltr"></div>
+                                    <div class="col-lg-8"><input type="file" name="attach_file" class="form-control" dir="ltr"></div>
+                                    @if ($errors->has('attach_file'))
+                                          <span class="help-block">
+                                                <strong>{{ $errors->first('attach_file') }}</strong>
+                                          </span>
+                                    @endif
                                  </div>
                                  <div class="form-group">
                                     <label class="control-label col-lg-4" for="formEmail">Mô tả</label>

@@ -55,7 +55,7 @@ class LoginController extends Controller
         
         if ($auth) {
             if (Auth::user()->userable_type == 'App/Models/Student') {
-                return redirect()->route('student.project_request');
+                return redirect()->route('student.project_request.create');
             }
 
             if (Auth::user()->userable_type == 'App/Models/Admin') {

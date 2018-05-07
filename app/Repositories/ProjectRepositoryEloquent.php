@@ -10,4 +10,9 @@ Class ProjectRepositoryEloquent extends AbstractRepositoryEloquent implements Pr
 	{
 		return new Project; 
 	}
+
+	public function getProjectByStatus($status = [], $with = [], $select = ['*'])
+	{
+		return $this->model()->select($select)->with($with)->whereIn('status', $status)->get();
+	}
 }

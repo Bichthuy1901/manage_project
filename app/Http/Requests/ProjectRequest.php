@@ -28,6 +28,7 @@ class ProjectRequest extends FormRequest
             'type_id' => 'required|numeric',
             'trainer_id' => 'required|numeric',
             'description' => "required",
+            'attach_file' => 'required',
         ];
     }
 }

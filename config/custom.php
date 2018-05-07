@@ -34,6 +34,7 @@ return [
             'approved' => 2,
             'denied' => 3,
             'doing' => 4,
-        ]
+        ],
+        'defaultAttachFilePath' => 'projects/attach_file',
     ]
 ];
