@@ -24,6 +24,12 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="{{route('admin.index' )}}">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">{{trans('message.title.manage_admin')}}</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="{{route('trainer.index' )}}">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">{{trans('message.title.manage_trainer')}}</span>

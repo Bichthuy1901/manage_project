@@ -59,6 +59,15 @@
             @endif
         </div>
         <div class="form-group">
+            <label for="exampleInputEmail1">{{ trans('message.column.orientation') }}</label>
+            <input class="form-control" type="orientation" name="orientation" value="{{ old('orientation') }}" placeholder="Enter orientation" required>
+            @if ($errors->has('orientation'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('orientation') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">{{ trans('message.column.birthday') }}</label>
             <input class="form-control" type="date" name="birthday" value="{{ old('birthday') }}" placeholder="Enter birthday" required>
             @if ($errors->has('birthday'))

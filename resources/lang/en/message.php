@@ -46,6 +46,7 @@ return [
         'schedule_time' => 'Create time',
         'manage_student' => 'Manage Student',
         'manage_trainer'=>'Manage Trainer',
+        'manage_admin' => 'Manage Admin',
     ],
     'action' => [
         'edit' => 'Edit',

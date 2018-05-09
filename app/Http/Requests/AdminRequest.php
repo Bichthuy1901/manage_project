@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class AdminRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class AdminRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         if ($this->isMethod('PUT')) {
             $arr = [

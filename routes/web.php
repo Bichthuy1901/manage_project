@@ -31,6 +31,10 @@ Route::group(['prefix'=> 'admin','namespace' => 'admin'], function()
     Route::resource('trainer' ,'TrainerController');
     Route::get('/trainer/delete/{id}', 'TrainerController@destroy');
     Route::get('/search-trainer', 'TrainerController@search');
+
+    Route::resource('admin' ,'AdminController');
+    Route::get('/admin/delete/{id}', 'AdminController@destroy');
+  
 });
 
 Route::group(['namespace' => 'Student', 'middleware' => 'student'], function()

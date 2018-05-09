@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\Trainers;
 
 class StudentRequest extends FormRequest
 {
@@ -25,6 +25,7 @@ class StudentRequest extends FormRequest
      */
     public function rules(Request $request)
     {
+        dd($request);
         if ($this->isMethod('PUT')) {
             $arr = [
                 'name' =>'required|max:255',

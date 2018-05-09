@@ -10,7 +10,7 @@
 </ol>
 <div class="row header-custom">
     <div class="col-md-1">
-    <a class="btn btn-primary" href = "{{ route('trainer.create') }}">
+    <a class="btn btn-primary" href = "{{ route('admin.create') }}">
     {{ trans('message.action.new') }}
     </a>
     </div>
@@ -22,23 +22,23 @@
       <tr>
           <th class="text-center">#</th>
           <th class="text-center">{{ trans('message.column.name') }}</th>
-          <th class="text-center">{{ trans('message.column.trainer_code') }}</th>
+          <th class="text-center">{{ trans('message.column.email') }}</th>
           <th class="text-center"></th>
       </tr>
     </thead>
     <tbody>
-    @if (isset($trainers))
-      @foreach ($trainers as $trainer)
+    @if (isset($admins))
+      @foreach ($admins as $admin)
       <tr>
-          <th class="text-center">{{ $trainer->id }}</th>
-          <th>{{ $trainer->name }}</th>
-          <th>{{ $trainer->email }}</th>
+          <th class="text-center">{{ $admin->id }}</th>
+          <th>{{ $admin->name }}</th>
+          <th>{{ $admin->email }}</th>
           <th>
-            <a href = "{{ route('trainer.edit', ['id' => $trainer->id]) }}">
+            <a href = "{{ route('admin.edit', ['id' => $admin->id]) }}">
               <i class="fas fa-edit"></i>
             </a>
-            @if (Auth::id() != $trainer->id)
-            <a data-id="{{ $trainer->id}}" class="delTrainer">
+            @if (Auth::id() != $admin->id)
+            <a data-id="{{ $admin->id}}" class="delAdmin">
               <i class="fas fa-trash-alt"></i>
             </a>
             @endif
@@ -48,11 +48,11 @@
     @endif
     </tbody>
   </table>
-  @if (isset($trainers)) 
-      {{ $trainers->links() }}
+  @if (isset($admins)) 
+      {{ $admins->links() }}
   @endif
 </div>
 @endsection
 @section('script')
-  <script src="{{ asset('js/admin/trainers.js') }}"></script>
+  <script src="{{ asset('js/admin/admins.js') }}"></script>
 @endsection

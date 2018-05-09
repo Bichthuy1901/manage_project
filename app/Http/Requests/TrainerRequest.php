@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-use App\Models\Trainers;
+use App\Models\Trainer;
 
 class TrainerRequest extends FormRequest
 {   

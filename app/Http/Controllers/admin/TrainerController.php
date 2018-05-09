@@ -98,6 +98,7 @@ class TrainerController extends Controller
      */
     public function update(TrainerRequest $request, $id)
     {
+        dd(1);
          $data = $request->all();
        if ($this->trainer->update($id, $data)) {
             return redirect()->route('trainer.edit', ['id' => $id])->with('error', trans('The trainer has been successfully edited!'));
